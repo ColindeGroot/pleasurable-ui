@@ -28,6 +28,10 @@ app.get('/', async function (req, res) {
   res.render('index.liquid')
 })
 
+app.get('/radio/:name', async function (req, res) {
+  res.render('radio.liquid')
+})
+
 app.get('/bookmarks', async function (req, res) {
   res.render('bookmarks.liquid')
 })

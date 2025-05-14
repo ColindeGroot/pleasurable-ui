@@ -33,7 +33,7 @@ body{
     /* 100%nl-> nl100 want mag niet beginnen met getal */
     --nl100-primary: #000;
     --nl100-secondary: #12a638;
-    --nl100-tabs: # ;
+    --nl100-tabs: #EF7D00 ;
     --nl100-accent: #000;
     --nl100-bg: #fafafa;
     --nl100-timeline: #5D5D5D;
