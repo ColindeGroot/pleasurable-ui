@@ -1,0 +1,140 @@
+ .popup {
+        overflow: visible;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        z-index: 999;
+        width: 90%;
+        min-width: 200px;
+        max-width: 400px;
+
+        border: none;
+        border-radius: 10px;
+        box-shadow: 10px 20px 50px #e7e7e7;
+
+    }
+
+    .info-wrapper {
+        display: flex;
+        flex-direction: row;
+    }
+
+
+
+    dd {
+        margin: 0;
+    }
+
+    @supports not selector([]) {
+
+        /*support voor de selector*/
+        [popover] {
+            /* standaard openklappen */
+            display: block;
+        }
+
+        [popover]:popover-open {
+            /*als op de knop word gedrukt sluiten*/
+            display: none;
+        }
+    }
+
+    .popup-layout {
+        display: flex;
+        flex-flow: row wrap;
+        gap: 1em;
+
+        padding: 2rem 1rem 0 1rem;
+    }
+
+    .popup-status {
+        position: absolute;
+        top: -0.5em;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #FE0170;
+        color: white;
+        padding: 0.25em 0.5em;
+        border-radius: 5px;
+        z-index: 10;
+    }
+
+    .popup picture {
+        width: 120px;
+        height: 120px;
+    }
+
+    .show-logo {
+        width: 4em;
+        aspect-ratio: 1;
+        border-radius: 50px;
+    }
+
+    /* .popup-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    } */
+
+    .popup-title{
+        margin-bottom: 1em;
+    }
+
+    .popup-buttons {
+        display: flex;
+        margin-top: 1em;
+    }
+
+    .popup-button {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: none;
+        background: #007acc;
+        color: white;
+        cursor: pointer;
+    }
+
+    .popup-button:first-child {
+        border-radius: 0 0 0 5px;
+        background-color: #FE0170;
+    }
+
+    .popup-button:hover {
+        flex-grow: 2;
+    }
+
+    .popup-buttons:hover .popup-button:not(:hover) {
+        flex: 0;
+        display: none;
+    }
+
+
+    /* .popup-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        .popup-button:first-child {
+            grid-column: 1/1;
+
+        }
+
+        .popup-button:last-child {
+            grid-column: 2/2;
+        }
+
+        .popup-button:hover {
+            grid-column: 1/-1;
+        }
+
+        &:has(.popup-button:hover) {
+            .popup-button:not(:hover) {
+                display: none;
+            }
+        }
+    } */
+
+    .popup-button {
+        transition: grid-column 0.3s ease-in;
+    }

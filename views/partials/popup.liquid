@@ -3,25 +3,39 @@
 
 
 <dialog class="popup" popover id="my-popover">
-    <strong>Bijna live!</strong>
 
     <div class="popup-layout">
-
+        <strong class="popup-status">Bijna live!</strong>
         <picture class="show-logo">
             <img src="/assets/radioveronica-logo.png" alt="placeholder" height="120" width="120" />
         </picture>
 
         <div class="popup-content">
-            <h3>Show naam</h3>
+            <h3 class="popup-title">Show naam</h3>
             <dl>
-                <dt>
-                    <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM11.8284 6.75736C12.3807 6.75736 12.8284 7.20507 12.8284 7.75736V12.7245L16.3553 14.0653C16.8716 14.2615 17.131 14.8391 16.9347 15.3553C16.7385 15.8716 16.1609 16.131 15.6447 15.9347L11.4731 14.349C11.085 14.2014 10.8284 13.8294 10.8284 13.4142V7.75736C10.8284 7.20507 11.2761 6.75736 11.8284 6.75736Z"
-                            fill="#8B8B8B" />
-                    </svg>
-                </dt>
-                <dd>12:00 - 14:00</dd> <!-- oneshow.from en until -->
+                <div class="info-wrapper">
+                    <dt>
+                        <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM11.8284 6.75736C12.3807 6.75736 12.8284 7.20507 12.8284 7.75736V12.7245L16.3553 14.0653C16.8716 14.2615 17.131 14.8391 16.9347 15.3553C16.7385 15.8716 16.1609 16.131 15.6447 15.9347L11.4731 14.349C11.085 14.2014 10.8284 13.8294 10.8284 13.4142V7.75736C10.8284 7.20507 11.2761 6.75736 11.8284 6.75736Z"
+                                fill="#8B8B8B" />
+                        </svg>
+                    </dt>
+                    <dd>12:00 - 14:00</dd>
+                </div>
+
+                <div class="info-wrapper">
+                    <dt>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true" focusable="false">
+                            <circle cx="12" cy="8" r="4" fill="#FFFFFF" />
+                            <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="#FFFFFF" stroke-width="2" fill="none"
+                                stroke-linecap="round" />
+                        </svg>
+                    </dt>
+                    <dd>Ekdom</dd> <!-- oneshow.from en until -->
+                </div>
             </dl>
         </div>
 
@@ -36,117 +50,3 @@
 </dialog>
 
 <button popovertarget="my-popover">Bekijk</button>
-
-
-<style>
-    body {
-        position: relative;
-    }
-
-    .popup {
-        position: absolute;
-        left: 50%;
-        top: 60%;
-        transform: translate(-50%, 0%);
-
-        z-index: 999;
-        width: 90%;
-        min-width: 200px;
-        max-width: 400px;
-
-        padding: 1rem;
-        border: none;
-        border-radius: 10px;
-        box-shadow: 10px 20px 50px #e7e7e7;
-
-    }
-
-    dl {
-        display: flex;
-    }
-
-    dd {
-        margin: 0;
-    }
-
-    @supports not selector([]) {
-
-        /*support voor de selector*/
-        [popover] {
-            /* standaard openklappen */
-            display: block;
-        }
-
-        [popover]:popover-open {
-            /*als op de knop word gedrukt sluiten*/
-            display: none;
-        }
-    }
-
-    .popup-layout {
-        display: flex;
-        flex-flow: row wrap;
-        gap: 1em;
-    }
-
-    .popup picture {
-        width: 120px;
-        height: 120px;
-    }
-
-    .show-logo {
-        width: 4em;
-        aspect-ratio: 1;
-        border-radius: 50px;
-    }
-
-
-    .popup-buttons {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-
-        .popup-button:first-child {
-            grid-column: 1/1;
-
-        }
-
-        .popup-button:last-child {
-            grid-column: 2/2;
-        }
-
-        .popup-button:hover {
-            grid-column: 1/-1;
-        }
-
-        &:has(.popup-button:hover) {
-            .popup-button:not(:hover) {
-                display: none;
-            }
-        }
-    }
-
-    .popup-button {
-        transition: grid-column 0.3s ease-in;
-    }
-</style>
-
-<script>
-
-    // zet de focus gelijk op de popup wanneer deze word geopend. Dit is een enchanment voor o.a. screenreaders zodat ze weten wat ze moeten voorlezen
-    // ik ben hier nog beetje mee aan het spelen om op de goede plek de focus te leggen
-
-    const dialog = document.getElementById('my-popover');
-    const openButton = document.querySelector('[popovertarget="my-popover"]');
-
-    dialog.addEventListener('toggle', () => {
-        if (dialog.open) {
-            // Focus op container zelf, zodat screenreader de naam (titel) voorleest
-            dialog.focus();
-        } else {
-            openButton.focus();
-        }
-    });
-
-
-
-</script>
