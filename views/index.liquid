@@ -16,7 +16,7 @@
                                 <picture>
                                     <source type="image/avif" srcset="/assets/radio-1.avif">
                                     <source type="image/webp" srcset="/assets/radio-1.webp">
-                                    <img fetchpriority="high" src="/assets/radio-1.png" width="93" height="33" alt="Ga naar de programmeringspagina van {{radiostation.name}}" title="Logo van {{ radiostation.name }}">
+                                    <img fetchpriority="high" src="/assets/radio-1.png" width="616" height="206" alt="Ga naar de programmeringspagina van {{radiostation.name}}" title="Logo van {{ radiostation.name }}">
                                 </picture>
                                 
                             {% when 2 %}
@@ -99,5 +99,6 @@
         </ul>
         <a class="button-bookmark" href="/bookmarks">Bekijk Bookmarks</a>
     </main>
+    {% render 'partials/popup.liquid' %}
 
 </body>

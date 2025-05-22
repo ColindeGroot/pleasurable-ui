@@ -37,7 +37,8 @@ header{
   }
   header a.logo{
     display: block;
-    min-width: 93px;
+    max-width: 93px;
+    height: 65px;
     margin-left: 0;
   }
   @media (min-width: 680px){
@@ -48,6 +49,8 @@ header{
   }
   header a.logo img{
     width: 100%;
+    height: 65px;
+    object-fit: contain;
   }
   header .button-whatsapp{
     height: 24px;
