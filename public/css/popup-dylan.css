@@ -122,6 +122,7 @@
         grid-template-columns: 1fr 1fr;
         transition: 0.3s grid-template-columns ease-in;
         overflow: hidden;
+            margin-top: 1em;
         .popup-button:first-child {
             grid-column: 1/1;
 
@@ -159,12 +160,12 @@
     }
 
     #my-popover{
-         transition-duration: 5s;
+         transition-duration: 2s;
         display: block;
         @starting-style{
         left: 95%;
         top: 100%;
-        transform: translate(-95%, -15px);
+        transform: scaleX(0.5) translate(-140%, 150%);
         }
     }
          [popover]:popover-open {
