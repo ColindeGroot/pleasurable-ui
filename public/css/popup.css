@@ -1,117 +1,132 @@
  .popup {
-        overflow: visible;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+     overflow: visible;
+     position: fixed;
+     left: 50%;
+     top: 90%;
+     transform: translate(-50%, -90%);
 
-        z-index: 999;
-        width: 90%;
-        min-width: 200px;
-        max-width: 400px;
+     z-index: 999;
+     width: 80%;
+     min-width: 200px;
+     max-width: 400px;
 
-        border: none;
-        border-radius: 10px;
-        box-shadow: 10px 20px 50px #e7e7e7;
+     border: none;
+     border-radius: 10px;
+     box-shadow: 10px 20px 50px #000;
 
+     transition-behavior: allow-discrete;
+
+ }
+
+ @media (min-width: 800px) {
+     .popup {
+         left: 95%;
+         top: 95%;
+         transform: translate(-95%, -95%);
+
+     }
+ }
+
+ .info-wrapper {
+     display: flex;
+     flex-direction: row;
+ }
+
+
+ dd {
+     margin: 0;
+ }
+
+ @supports not selector([]) {
+
+     /*support voor de selector*/
+     [popover] {
+         /* standaard openklappen */
+         display: block;
+     }
+
+     [popover]:popover-open {
+         /*als op de knop word gedrukt sluiten*/
+         display: none;
+     }
+ }
+
+ .popup-layout {
+     display: flex;
+     flex-flow: row wrap;
+     justify-content: start;
+     gap: 1em;
+     padding: 2rem 1rem 0 1rem;
+ }
+
+ .popup-status {
+     position: absolute;
+     top: -0.8em;
+     left: 50%;
+     transform: translateX(-50%);
+     background: #FE0170;
+     color: white;
+     padding: 0.25em 0.5em;
+     border-radius: 5px;
+     z-index: 10;
+ }
+
+ .popup picture img{
+     border-radius: 50%;
+     width: 70px;
+     height: auto;
+ }
+
+ @media (min-width:500px){
+    .popup picture img{
+     width: 120px;
     }
+ }
 
-    .info-wrapper {
-        display: flex;
-        flex-direction: row;
-    }
+ .popup-title {
+     margin-bottom:1em;
+ }
 
+ .popup-buttons {
+     margin-top: 1em;
+     display: flex;
+     width: 100%;
+     min-width: 0;
+     overflow: hidden;
+ }
 
+ .popup-button {
+     flex: 1 1 50%;
+     min-width: 0;
+     height: 2.5em;
+     border: none;
+     background: #007acc;
+     color: white;
+     cursor: pointer;
 
-    dd {
-        margin: 0;
-    }
+     transition: flex 0.2s ease-in-out, opacity 0.2s linear;
+     transition-behavior: allow-discrete;
+ }
 
-    @supports not selector([]) {
+ .popup-button:first-child {
+     border-radius: 0 0 0 5px;
+     background-color: #FE0170;
+ }
 
-        /*support voor de selector*/
-        [popover] {
-            /* standaard openklappen */
-            display: block;
-        }
+ .popup-buttons:hover .popup-button:not(:hover) {
+     flex: 0 1 0;
+     pointer-events: none;
+     color: #00000000; /* ontzichtbaar maken van de tekst in button voor een soepele overgang */
+ }
 
-        [popover]:popover-open {
-            /*als op de knop word gedrukt sluiten*/
-            display: none;
-        }
-    }
-
-    .popup-layout {
-        display: flex;
-        flex-flow: row wrap;
-        gap: 1em;
-
-        padding: 2rem 1rem 0 1rem;
-    }
-
-    .popup-status {
-        position: absolute;
-        top: -0.5em;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #FE0170;
-        color: white;
-        padding: 0.25em 0.5em;
-        border-radius: 5px;
-        z-index: 10;
-    }
-
-    .popup picture {
-        width: 120px;
-        height: 120px;
-    }
-
-    .show-logo {
-        width: 4em;
-        aspect-ratio: 1;
-        border-radius: 50px;
-    }
-
-    /* .popup-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    } */
-
-    .popup-title{
-        margin-bottom: 1em;
-    }
-
-    .popup-buttons {
-        display: flex;
-        margin-top: 1em;
-    }
-
-    .popup-button {
-        flex: 1;
-        padding: 0.75rem 1rem;
-        border: none;
-        background: #007acc;
-        color: white;
-        cursor: pointer;
-    }
-
-    .popup-button:first-child {
-        border-radius: 0 0 0 5px;
-        background-color: #FE0170;
-    }
-
-    .popup-button:hover {
-        flex-grow: 2;
-    }
-
-    .popup-buttons:hover .popup-button:not(:hover) {
-        flex: 0;
-        display: none;
-    }
+ .popup-button:hover, .popup-button:focus {
+     flex: 1 1 100%;
+ }
 
 
-    /* .popup-buttons {
+
+
+ /* .popup-buttons {
         display: grid;
         grid-template-columns: 1fr 1fr;
 
@@ -134,7 +149,3 @@
             }
         }
     } */
-
-    .popup-button {
-        transition: grid-column 0.3s ease-in;
-    }
