@@ -27,14 +27,19 @@
      }
  }
 
- .info-wrapper {
+ dl {
      display: flex;
-     flex-direction: row;
+     flex-wrap: wrap;
  }
 
+ dt {
+     width: 1rem;
+     margin-right: 1rem;
+ }
 
  dd {
-     margin: 0;
+     margin-left: auto;
+     width: calc(100% - 2rem)
  }
 
  @supports not selector([]) {
@@ -71,20 +76,20 @@
      z-index: 10;
  }
 
- .popup picture img{
+ .popup picture img {
      border-radius: 50%;
      width: 70px;
      height: auto;
  }
 
- @media (min-width:500px){
-    .popup picture img{
-     width: 120px;
-    }
+ @media (min-width:500px) {
+     .popup picture img {
+         width: 120px;
+     }
  }
 
  .popup-title {
-     margin-bottom:1em;
+     margin-bottom: 1em;
  }
 
  .popup-buttons {
@@ -116,10 +121,12 @@
  .popup-buttons:hover .popup-button:not(:hover) {
      flex: 0 1 0;
      pointer-events: none;
-     color: #00000000; /* ontzichtbaar maken van de tekst in button voor een soepele overgang */
+     color: #00000000;
+     /* ontzichtbaar maken van de tekst in button voor een soepele overgang */
  }
 
- .popup-button:hover, .popup-button:focus {
+ .popup-button:hover,
+ .popup-button:focus {
      flex: 1 1 100%;
  }
 
