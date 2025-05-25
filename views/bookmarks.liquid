@@ -9,7 +9,7 @@
                 <ul class="radiostations">
                     {% for oneradio in radioData limit: 3 %}
                     <li class="one-radiostation block-radio-{{oneradio.id}}"> 
-                        <a href="/radio/{{oneradio.name | url_encode | replace: '+', '%20'}}/programering">
+                        <a href="/radio/{{oneradio.name | url_encode | replace: '+', '%20'}}/programmering">
                         
                         {% case oneradio.id %}
                                 {% when 1 %}
