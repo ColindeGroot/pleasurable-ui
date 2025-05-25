@@ -26,6 +26,20 @@ body.bookmarks .text-xxl{
     max-width: 380px;
     color: #fff;
 }
+/* DELETE BTN NEW */
+.container-bookmarks main .bookmarks-overview article button.bookmark-delete{
+    position: absolute;
+    top: 0;
+    left: 0;
+    translate: -50% -50%;
+    width: 40px;
+    height: 40px;
+    background: #B0120C;
+    border-radius: 50%;
+    appearance: none;
+    border: 3px solid #fff;
+}
+/*  */
 .container-bookmarks main .bookmarks-overview article svg > *{
     fill: #fff;
 }
@@ -120,6 +134,8 @@ body.bookmarks .text-xxl{
 dl {
   display: flex;
   flex-wrap: wrap;
+  font-size: 18px;
+  font-weight: bold;
 }
 dt {
   width: 1rem;
