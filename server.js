@@ -256,7 +256,7 @@ app.post('/radio/:name/programmering/:id/unmark', async (req, res) => {
 
 
 app.get('/card', async function (req, res) {
-  res.render('card.liquid')
+  res.render('card-dylan.liquid')
 })
 
 
