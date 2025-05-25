@@ -87,9 +87,9 @@ list-style-type: none;
 padding: 0;
 margin: 0;
 }
-svg > * {
+/* svg > * {
     fill: black;
-}
+} */
 a{
   color: inherit;
   text-decoration: none;
