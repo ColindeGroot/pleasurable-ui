@@ -27,11 +27,17 @@ body.bookmarks .text-xxl{
     color: #fff;
 }
 /* DELETE BTN NEW */
-.container-bookmarks main .bookmarks-overview article button.bookmark-delete{
+.container-bookmarks main .bookmarks-overview article form{
     position: absolute;
     top: 0;
     left: 0;
-    translate: -50% -50%;
+}
+@media (min-width: 500px){
+    .container-bookmarks main .bookmarks-overview article form{
+        translate: -50% -50%;
+    }
+}
+.container-bookmarks main .bookmarks-overview article form button.bookmark-delete{
     width: 40px;
     height: 40px;
     background: #B0120C;
