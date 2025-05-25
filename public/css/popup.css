@@ -1,3 +1,8 @@
+ body{
+    --popup-pink:#E90166;
+    --popup-blue:#0076D1;
+ }
+
  .popup {
      overflow: visible;
      position: fixed;
@@ -12,7 +17,7 @@
 
      border: none;
      border-radius: 10px;
-     box-shadow: 10px 20px 50px #000;
+     box-shadow: 10px 20px 50px var(--popup-dark);
 
      transition-behavior: allow-discrete;
 
@@ -69,8 +74,8 @@
      top: -0.8em;
      left: 50%;
      transform: translateX(-50%);
-     background: #FE0170;
-     color: white;
+     background: var(--popup-pink);
+     color: var(--color-white);
      padding: 0.25em 0.5em;
      border-radius: 5px;
      z-index: 10;
@@ -103,10 +108,11 @@
  .popup-button {
      flex: 1 1 50%;
      min-width: 0;
+     font-weight: bold;
      height: 2.5em;
      border: none;
-     background: #007acc;
-     color: white;
+     background: var(--popup-blue);
+     color: var(--color-white);
      cursor: pointer;
 
      transition: flex 0.2s ease-in-out, opacity 0.2s linear;
@@ -115,7 +121,7 @@
 
  .popup-button:first-child {
      border-radius: 0 0 0 5px;
-     background-color: #FE0170;
+     background-color: var(--popup-pink);
  }
 
  .popup-buttons:hover .popup-button:not(:hover) {
@@ -129,30 +135,3 @@
  .popup-button:focus {
      flex: 1 1 100%;
  }
-
-
-
-
- /* .popup-buttons {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-
-        .popup-button:first-child {
-            grid-column: 1/1;
-
-        }
-
-        .popup-button:last-child {
-            grid-column: 2/2;
-        }
-
-        .popup-button:hover {
-            grid-column: 1/-1;
-        }
-
-        &:has(.popup-button:hover) {
-            .popup-button:not(:hover) {
-                display: none;
-            }
-        }
-    } */
