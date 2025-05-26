@@ -2,17 +2,18 @@
 
 
 <dialog class="popup" popovertarget="my-popover">
-
     <div class="popup-layout">
         <strong class="popup-status">Bijna live!</strong>
 
         <picture class="show-logo">
-            <img src="/assets/radioveronica-logo.png" alt="placeholder" height="120" width="120" />
+            <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=avif" type="image/avif">
+            <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=webp" type="image/webp">
+            <img src="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}"  alt="Foto van {{ upcomingShow.name  }}" class="deejay-image" width="{{ upcomingShow.headermobile.width }}" height="{{upcomingShow.headermobile.height }}">
         </picture>
 
 
         <div class="popup-content">
-            <h3 class="popup-title">Ekdom in de morgen</h3>
+            <h3 class="popup-title">{{upcomingShow.name}}</h3>
             <dl>
                 <dt>
                     <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,7 +22,7 @@
                             fill="#8B8B8B" />
                     </svg>
                 </dt>
-                <dd>12:00 - 14:00</dd>
+                <dd><time datetime="{{upcomingShow.from}}">{{upcomingShow.from}}</time> - <time datetime="{{upcomingShow.until}}">{{upcomingShow.until}}</time></dd>
 
                 <dt>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +32,7 @@
                             stroke-linecap="round" />
                     </svg>
                 </dt>
-                <dd>Ekdom</dd> <!-- oneshow.from en until -->
+                <dd>{{upcomingShow.users[0].mh_users_id.full_name}}</dd>
 
             </dl>
         </div>
