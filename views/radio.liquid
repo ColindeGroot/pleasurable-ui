@@ -1,4 +1,5 @@
-{% render 'partials/head.liquid' pageTitle: "{{thisstation}}" style: thisstation%}
+
+{% render 'partials/head.liquid' pageTitle: "{{thisstation}}" style: thisstation stylesheet: "radio"%}
 {% if upcomingShow %}
     {% render 'partials/popup.liquid'  upcomingShow: upcomingShow%}
 {% endif %}
