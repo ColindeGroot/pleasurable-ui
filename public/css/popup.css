@@ -1,6 +1,7 @@
  body {
      --popup-pink: #E90166;
      --popup-blue: #0076D1;
+     --popup-dark: #1d1d1b;
  }
 
  .popup {
@@ -8,8 +9,8 @@
      scale: 1;
      overflow: visible;
      position: fixed;
-     /* left: 50%;
-     top: 90%; */
+     left: 50%;
+     top: 90%;
      transform: translate(-50%, -90%);
 
      z-index: 999;
@@ -25,14 +26,14 @@
      transition: all 0.4s ease-in-out;
      transition-behavior: allow-discrete;
 
- }
-
- @starting-style {
-     .popup {
+     @starting-style {
          scale: 0;
          transform: translate(-50%, 100%);
      }
+
  }
+
+
 
  @media (min-width: 800px) {
      .popup {
@@ -40,14 +41,15 @@
          top: 95%;
          transform: translate(-95%, -95%);
 
-     }
-
-     @starting-style {
-         .popup {
+         @starting-style {
              scale: 0;
              transform: translate(-90%, 100%);
+
          }
+
      }
+
+
 
 
  }
