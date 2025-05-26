@@ -1,9 +1,11 @@
- body{
-    --popup-pink:#E90166;
-    --popup-blue:#0076D1;
+ body {
+     --popup-pink: #E90166;
+     --popup-blue: #0076D1;
  }
 
  .popup {
+     opacity: 1;
+     scale: 1;
      overflow: visible;
      position: fixed;
      left: 50%;
@@ -19,8 +21,17 @@
      border-radius: 10px;
      box-shadow: 10px 20px 50px var(--popup-dark);
 
+     transition: all 0.4s ease-in-out;
      transition-behavior: allow-discrete;
 
+
+ }
+
+ @starting-style {
+     .popup {
+         scale: 0;
+         transform: translate(-50%, 100%);
+     }
  }
 
  @media (min-width: 800px) {
@@ -30,6 +41,15 @@
          transform: translate(-95%, -95%);
 
      }
+
+     @starting-style {
+         .popup {
+             scale: 0;
+             transform: translate(-90%, 100%);
+         }
+     }
+
+
  }
 
  dl {
@@ -52,13 +72,15 @@
      /*support voor de selector*/
      [popover] {
          /* standaard openklappen */
+         opacity: 1;
          display: block;
      }
 
      [popover]:popover-open {
          /*als op de knop word gedrukt sluiten*/
-         display: none;
+         opacity: 0;
      }
+
  }
 
  .popup-layout {
