@@ -1,7 +1,7 @@
 
-{% render 'partials/head.liquid' pageTitle: "{{thisstation}}" style: thisstation%}
+{% render 'partials/head.liquid' pageTitle: "{{thisstation}}" style:thisstation stylesheet: "radio"%}
 
-{% render 'partials/popup.liquid'  upcomingShow: upcomingShow%}
+{% render 'partials/popup.liquid' upcomingShow: upcomingShow %}
 
 {% comment %} <pre>{{ thisWeekShows | json | replace: ',', ",\n" | replace: '{', "{\n" | replace: '}', "\n}" }}</pre> {% endcomment %}
 {% comment %} Start of Chat GPT Code [Calc percentage of minutes pased] {% endcomment %}
