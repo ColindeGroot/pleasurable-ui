@@ -1,6 +1,9 @@
 {% render 'partials/head.liquid' pageTitle: "{{thisstation}}" style: thisstation%}
-{% render 'partials/popup.liquid' %}
+{% if upcomingShow %}
+    {% render 'partials/popup.liquid'  upcomingShow: upcomingShow%}
+{% endif %}
 
+{% comment %} <pre>{{ thisWeekShows | json | replace: ',', ",\n" | replace: '{', "{\n" | replace: '}', "\n}" }}</pre> {% endcomment %}
 {% comment %} Start of Chat GPT Code [Calc percentage of minutes pased] {% endcomment %}
 {% assign curTime = "now" | date: "%H:%M", "Europe/Amsterdam"%}
 {% assign curHours = curTime | split: ":" | first %}
@@ -39,8 +42,9 @@
                 </ul>
             </nav>
         </div>
-        
-<button popovertarget="my-popover">Open popup</button>
+        {% if upcomingShow %}
+            <button popovertarget="my-popover">Open popup</button>
+        {% endif %}
         <div class="overview-shows">
             <h1 class="text-xl">Programmering van {{stationNameGenerated}}<br>{{todayName}} </h1> 
             <div class="timeline-wrapper">
@@ -141,6 +145,15 @@
                                 </p>
 
                             </div>
+                             <form method="post" class="form-bookmark" action="/radio/{{stationNameGeneratedEncoded}}/programmering/{{oneshow.id}}/bookmark">
+                                <button type="submit">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                        <path d="M11.0834 3.5C11.0834 2.5335 10.2999 1.75 9.33341 1.75H4.66675C3.70022 1.75 2.91675 2.5335 2.91675 3.5V11.6998C2.91675 12.1743 3.45307 12.4503 3.83911 12.1745L6.66106 10.1589C6.86387 10.014 7.13629 10.014 7.33911 10.1589L10.161 12.1745C10.5471 12.4503 11.0834 12.1743 11.0834 11.6998V3.5Z" stroke="white" stroke-width="2"/>
+                                    </svg>
+                                    Bookmark
+                                </button>
+                            </form>
+
                         </div>
                         <style>
                             @media (min-width: 1200px) {
