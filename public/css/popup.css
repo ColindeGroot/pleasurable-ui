@@ -1,7 +1,7 @@
  body {
      --popup-pink: #E90166;
      --popup-blue: #0076D1;
-     --popup-dark: #1d1d1b;
+     --popup-dark: #000;
  }
 
  .popup {
