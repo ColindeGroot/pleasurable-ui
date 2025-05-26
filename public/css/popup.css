@@ -8,8 +8,8 @@
      scale: 1;
      overflow: visible;
      position: fixed;
-     left: 50%;
-     top: 90%;
+     /* left: 50%;
+     top: 90%; */
      transform: translate(-50%, -90%);
 
      z-index: 999;
@@ -19,11 +19,11 @@
 
      border: none;
      border-radius: 10px;
+
      box-shadow: 10px 20px 50px var(--popup-dark);
 
      transition: all 0.4s ease-in-out;
      transition-behavior: allow-discrete;
-
 
  }
 
