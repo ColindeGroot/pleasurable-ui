@@ -15,11 +15,16 @@
 
         <link rel="stylesheet" href="/css/popup-ui-cla.css">
 
-        {% if style != "home" %}
+        {% if stylesheet == "radio" %}
             <link rel="stylesheet" href="/css/style.css">
             <link rel="stylesheet" href="/css/colors-{{style}}.css">
             <link rel="stylesheet" href="/css/radio.css">
-        {% else %}
+        {% endif %}
+        {% if stylesheet == "bookmarks" %}
+            <link rel="stylesheet" href="/css/general.css">
+            <link rel="stylesheet" href="/css/bookmarks.css">
+        {% endif %}
+        {% if stylesheet == "home" %}
             <link rel="stylesheet" href="/css/general.css">
             <link rel="stylesheet" href="/css/home.css">
         {% endif %}
