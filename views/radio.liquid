@@ -10,180 +10,249 @@
 
 {% assign percentageGone = curTimeInMinutes | divided_by: totalMinutesInDay | times: 100 %}
 {% comment %} End of Chat GPT Code {% endcomment %}
+
 <body class="deejays-{{thisstation}}">
-    {% render 'partials/header.liquid' v: "o" thisstation: thisstation stationNameGenerated: stationNameGenerated %}{% comment %} Version : Other {% endcomment %}
+    {% render 'partials/header.liquid' v: "o" thisstation: thisstation stationNameGenerated: stationNameGenerated %}{%
+    comment %} Version : Other {% endcomment %}
     <main class="radio-station">
         <div class="part-sticky top-wrapper">
-            
-            <nav class="sticky-menu sticky-menu-bottom day-menu">            
+
+            <nav class="sticky-menu sticky-menu-bottom day-menu">
                 <ul>
                     {% comment %} Modulo i found out because of chat {% endcomment %}
                     {% for i in (0..7) %}
-                        <li>   
-                            {% assign index = forloop.index0 %}   
-                            {% assign index2 = forloop.index | plus: 2 %}
-                            
-                            {% assign dayIndex = index | plus: 1 | modulo: 7 %} <!-- Ensures values loop back after Sunday -->
-                            
-                            <a 
-                            {% if dayIndex == today %}
-                            class="active"  
-                            {% endif %}
-                            
-                            href="/radio/{{ stationNameGeneratedEncoded }}/programmering/{{ dayNames[dayIndex] }}"> 
-                                {{ dayNames[dayIndex] }}
-                                <b>{{ thisWeek[index].day }}</b>
-                            </a>
-                        </li>
+                    <li>
+                        {% assign index = forloop.index0 %}
+                        {% assign index2 = forloop.index | plus: 2 %}
+
+                        {% assign dayIndex = index | plus: 1 | modulo: 7 %}
+                        <!-- Ensures values loop back after Sunday -->
+
+                        <a {% if dayIndex==today %} class="active" {% endif %}
+                            href="/radio/{{ stationNameGeneratedEncoded }}/programmering/{{ dayNames[dayIndex] }}">
+                            {{ dayNames[dayIndex] }}
+                            <b>{{ thisWeek[index].day }}</b>
+                        </a>
+                    </li>
                     {% endfor %}
                 </ul>
             </nav>
         </div>
-        
-<button popovertarget="my-popover">Open popup</button>
+
+        <button popovertarget="my-popover">Open popup</button>
         <div class="overview-shows">
-            <h1 class="text-xl">Programmering van {{stationNameGenerated}}<br>{{todayName}} </h1> 
+            <h1 class="text-xl">Programmering van {{stationNameGenerated}}<br>{{todayName}} </h1>
             <div class="timeline-wrapper">
                 <div class="current-time" style="top: calc({{ percentageGone }}%);">
-                {% comment %} Rode balk op huidige tijd
-                 
-                ik zat te denken aan een calc met huidige tijd (huidige minuut na 00:00 / aantal minuten in een dag * 100%) en die in een css variabele zetten inline
-                en dan absolute stylen met left: calc(var(--current-time) * 100%)
-                
-                {% endcomment %}
+                    {% comment %} Rode balk op huidige tijd
+
+                    ik zat te denken aan een calc met huidige tijd (huidige minuut na 00:00 / aantal minuten in een dag
+                    * 100%) en die in een css variabele zetten inline
+                    en dan absolute stylen met left: calc(var(--current-time) * 100%)
+
+                    {% endcomment %}
 
 
-                
+
                 </div>
                 <div class="timeline">
                     {% for i in (0..24) %} {% comment %} 24 hours {% endcomment %}
-                        {% if i == 24 %}
-                            <div class="hour hour-end" data-content="00:00">
-                                <div class="dots"></div>
-                            </div>
-                        {% else %}
-                            <div class="hour"data-content="{{i}}:00">
-                                <div class="dots"></div>
-                            </div>
-                            
-                        {% endif %}
+                    {% if i == 24 %}
+                    <div class="hour hour-end" data-content="00:00">
+                        <div class="dots"></div>
+                    </div>
+                    {% else %}
+                    <div class="hour" data-content="{{i}}:00">
+                        <div class="dots"></div>
+                    </div>
+
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
             <div class="show-wrapper">
                 {% comment %} offset moet het nummer van de dagnummer zijn {% endcomment %}
                 {% for todayshows in thisWeekShows offset:0 limit:1 %}
-                    {% for oneshow in todayshows.shows %}
-                        {% comment %} Start of ChatGPT Code {% endcomment %}
-                        {% assign start_time = oneshow.from | date: "%H:%M", "Europe/Amsterdam" | strip | split: ":" %}
-                        {% assign end_time = oneshow.until | date: "%H:%M", "Europe/Amsterdam" | strip | split: ":" %}
+                {% for oneshow in todayshows.shows %}
+                {% comment %} Start of ChatGPT Code {% endcomment %}
+                {% assign start_time = oneshow.from | date: "%H:%M", "Europe/Amsterdam" | strip | split: ":" %}
+                {% assign end_time = oneshow.until | date: "%H:%M", "Europe/Amsterdam" | strip | split: ":" %}
 
-                        {% assign start_hours = start_time[0] | times: 60 %}
-                        {% assign start_minutes = start_time[1] | plus: start_hours %}
-                        {% assign end_hours = end_time[0] | times: 60 %}
-                        {% assign end_minutes = end_time[1] | plus: end_hours %}
+                {% assign start_hours = start_time[0] | times: 60 %}
+                {% assign start_minutes = start_time[1] | plus: start_hours %}
+                {% assign end_hours = end_time[0] | times: 60 %}
+                {% assign end_minutes = end_time[1] | plus: end_hours %}
 
-                        {% assign time_difference = end_minutes | minus: start_minutes %}
-                        {% assign hour_difference = end_time[0] | minus: start_time[0] %}
-
-
-                        {% assign start_time_per = start_minutes | divided_by: totalMinutesInDay | times: 100 %}
-                        {% assign end_time_per = end_minutes | divided_by: totalMinutesInDay | times: 100 %}
-
-                        {% if start_time_per <= percentageGone and percentageGone < end_time_per %}
-                            {% assign extra_class_percentage = "active-show" %}
-                        {% else %}
-                            {% assign extra_class_percentage = "" %}
-                        {% endif %}
+                {% assign time_difference = end_minutes | minus: start_minutes %}
+                {% assign hour_difference = end_time[0] | minus: start_time[0] %}
 
 
-                        {% comment %} End of ChatGPT Code {% endcomment %}
-                        {% comment %} https://shopify.dev/docs/api/liquid/objects/forloop {% endcomment %}
-                        
-                        {% if forloop.index == 1 %}
-                            {% assign firstoffset = start_time[0] | split: ":00" | first | times: 60 | divided_by: 1440 | times: 100 %}
-                            {% comment %} this and then / 1440 * 100 {% endcomment %}
-                            {% if firstoffset > 0 %}
-                                <div class="card-fill" style="min-height: {{firstoffset}}%; max-height: {{firstoffset}}%; margin-bottom: 10px;">
-                               
-                                </div>
-                            {% endif %}
-                        {% endif %}
-                        {% if hour_difference < 2 %}
-                            {% assign extra-class = "short-show" %}
-                        {% else %}
-                            {% assign extra-class = "long-show" %}
-                        {% endif %}
-                        {% if hour_difference < 2 %}
-                            {% assign extra-class = "short-show" %}
-                        {% else %}
-                            {% assign extra-class = "long-show" %}
-                        {% endif %} 
-                        <div class="card-show {{extra-class}} {{extra_class_percentage}} card-show-{{ forloop.index }}" data-hours="{{hour_difference}}" style="min-height: calc(({{ time_difference }} / 1440 * 100%) - 10px); max-height: calc(({{ time_difference }} / 1440 * 100%) - 10px); margin-bottom: 10px;">
-                            <picture>
-                                <source srcset="https://fdnd-agency.directus.app/assets/{{oneshow.users[0].mh_users_id.cover.id}}?format=avif" type="image/avif">
-                                <source srcset="https://fdnd-agency.directus.app/assets/{{oneshow.users[0].mh_users_id.cover.id}}?format=webp" type="image/webp">
-                                <img src="https://fdnd-agency.directus.app/assets/{{oneshow.users[0].mh_users_id.cover.id}}"  alt="Foto van {{oneshow.users[0].mh_users_id.full_name }}" class="deejay-image" width="{{ oneshow.users[0].mh_users_id.cover.width }}" height="{{oneshow.users[0].mh_users_id.cover.height }}">
-                            </picture>
-                            <div class="part-content">
-                                <h2 class="text-l">{{oneshow.name}}</h2>
-                                <p class="show-time part-ghost">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.33337 8.00001C1.33337 4.32668 4.32671 1.33334 8.00004 1.33334C11.6734 1.33334 14.6667 4.32668 14.6667 8.00001C14.6667 11.6733 11.6734 14.6667 8.00004 14.6667C4.32671 14.6667 1.33337 11.6733 1.33337 8.00001ZM2.66671 8.00001C2.66671 10.94 5.06004 13.3333 8.00004 13.3333C10.94 13.3333 13.3334 10.94 13.3334 8.00001C13.3334 5.06001 10.94 2.66668 8.00004 2.66668C5.06004 2.66668 2.66671 5.06001 2.66671 8.00001ZM7.33337 8.27334V4.00001H8.66671V7.72668L11.14 10.1933L10.1934 11.14L7.33337 8.27334Z" fill="#8B8B8B"/>
+                {% assign start_time_per = start_minutes | divided_by: totalMinutesInDay | times: 100 %}
+                {% assign end_time_per = end_minutes | divided_by: totalMinutesInDay | times: 100 %}
+
+                {% if start_time_per <= percentageGone and percentageGone < end_time_per %} {% assign
+                    extra_class_percentage="active-show" %} {% else %} {% assign extra_class_percentage="" %} {% endif
+                    %} {% comment %} End of ChatGPT Code {% endcomment %} {% comment %}
+                    https://shopify.dev/docs/api/liquid/objects/forloop {% endcomment %} {% if forloop.index==1 %} {%
+                    assign firstoffset=start_time[0] | split: ":00" | first | times: 60 | divided_by: 1440 | times: 100
+                    %} {% comment %} this and then / 1440 * 100 {% endcomment %} {% if firstoffset> 0 %}
+                    <div class="card-fill"
+                        style="min-height: {{firstoffset}}%; max-height: {{firstoffset}}%; margin-bottom: 10px;">
+
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                    {% if hour_difference < 2 %} {% assign extra-class="short-show" %} {% else %} {% assign
+                        extra-class="long-show" %} {% endif %} {% if hour_difference < 2 %} {% assign
+                        extra-class="short-show" %} {% else %} {% assign extra-class="long-show" %} {% endif %} <div
+                        data-hours="{{hour_difference}}"
+                        style="min-height: calc(({{ time_difference }} / 1440 * 100%) - 10px); max-height: calc(({{ time_difference }} / 1440 * 100%) - 10px); margin-bottom: 10px;">
+                        <picture>
+                            <source
+                                srcset="https://fdnd-agency.directus.app/assets/{{oneshow.users[0].mh_users_id.cover.id}}?format=avif"
+                                type="image/avif">
+                            <source
+                                srcset="https://fdnd-agency.directus.app/assets/{{oneshow.users[0].mh_users_id.cover.id}}?format=webp"
+                                type="image/webp">
+                            <img src="https://fdnd-agency.directus.app/assets/{{oneshow.users[0].mh_users_id.cover.id}}"
+                                alt="Foto van {{oneshow.users[0].mh_users_id.full_name }}"
+                                width="{{ oneshow.users[0].mh_users_id.cover.width }}"
+                                height="{{oneshow.users[0].mh_users_id.cover.height }}">
+                        </picture>
+                        <div class="part-content">
+                            <h3>{{oneshow.name}}</h3>
+                            <dl>
+                                <dt>
+                                    <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM11.8284 6.75736C12.3807 6.75736 12.8284 7.20507 12.8284 7.75736V12.7245L16.3553 14.0653C16.8716 14.2615 17.131 14.8391 16.9347 15.3553C16.7385 15.8716 16.1609 16.131 15.6447 15.9347L11.4731 14.349C11.085 14.2014 10.8284 13.8294 10.8284 13.4142V7.75736C10.8284 7.20507 11.2761 6.75736 11.8284 6.75736Z"
+                                            fill="#8B8B8B" />
                                     </svg>
-                                    <time datetime="{{oneshow.from}}">{{oneshow.from}}</time> - <time datetime="{{oneshow.until}}">{{oneshow.until}}</time>
-                                </p>
-                                <p class="show-deejay part-ghost">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3333 5.33333C11.3333 7.17333 9.84 8.66667 8 8.66667C6.16 8.66667 4.66667 7.17333 4.66667 5.33333C4.66667 3.49333 6.16 2 8 2C9.84 2 11.3333 3.49333 11.3333 5.33333ZM10 5.33333C10 4.23333 9.1 3.33333 8 3.33333C6.9 3.33333 6 4.23333 6 5.33333C6 6.43333 6.9 7.33333 8 7.33333C9.1 7.33333 10 6.43333 10 5.33333ZM2 14.6667V10H14V14.6667H2ZM3.33333 11.3333V13.3333H12.6667V11.3333H3.33333Z" fill="#8B8B8B"/>
+                                </dt>
+                                <dd><time>{{ oneshow.from }}</time> - <time>{{ oneshow.until }}</time></dd> <!-- oneshow.from en until -->
+                                <dt>
+                                    <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM11.8284 6.75736C12.3807 6.75736 12.8284 7.20507 12.8284 7.75736V12.7245L16.3553 14.0653C16.8716 14.2615 17.131 14.8391 16.9347 15.3553C16.7385 15.8716 16.1609 16.131 15.6447 15.9347L11.4731 14.349C11.085 14.2014 10.8284 13.8294 10.8284 13.4142V7.75736C10.8284 7.20507 11.2761 6.75736 11.8284 6.75736Z"
+                                            fill="#8B8B8B" />
                                     </svg>
-                                    {{oneshow.users[0].mh_users_id.full_name}}
-                                </p>
+                                </dt>
+                                <dd>{{oneshow.users[0].mh_users_id.full_name}}</dd> <!-- oneshow.from en until -->
+
+                            </dl>
+                            <p>{{ oneshow.body | truncate: 30 }}</p>
+
+                            <div class="show-buttons">
+
+                                <a href="" class="show-button">meer</a>
+
+                                {% if bookmarks contains showId %}
+
+                                <form action="/postroute">
+                                    <button class="show-button" type="submit">
+                                        Unmark <svg width="45" height="45" viewBox="0 0 93 93" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M73.625 23.25C73.625 16.8297 68.4203 11.625 62 11.625H31C24.5795 11.625 19.375 16.8297 19.375 23.25V77.7201C19.375 80.872 22.9377 82.7053 25.5021 80.8732L44.2479 67.4839C45.5952 66.5213 47.4048 66.5213 48.7521 67.4839L67.4977 80.8732C70.0624 82.7053 73.625 80.872 73.625 77.7201V23.25Z" stroke="#1E1E1E" stroke-width="6.67"/></svg>
+                                    </button>
+                                </form>
+
+                                {% else %}
+
+                                <form action="/unmark">
+                                    <button class="show-button" type="submit">
+                                        Mark <svg width="45" height="45" viewBox="0 0 93 93" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg"><path d="M73.625 23.25C73.625 16.8297 68.4203 11.625 62 11.625H31C24.5795 11.625 19.375 16.8297 19.375 23.25V77.7201C19.375 80.872 22.9377 82.7053 25.5021 80.8732L44.2479 67.4839C45.5952 66.5213 47.4048 66.5213 48.7521 67.4839L67.4977 80.8732C70.0624 82.7053 73.625 80.872 73.625 77.7201V23.25Z" stroke="#1E1E1E" stroke-width="6.67"/></svg>
+                                    </button>
+                                </form>
+
+                                {% endif %}
 
                             </div>
+
                         </div>
-                        <style>
-                            @media (min-width: 1200px) {
-                                .current-time{
-                                    left: calc({{ percentageGone }}%) !important;
-                                    top: 50% !important;
-                                    translate: 0 -50%;
-                                }
-                                .current-time::after{
-                                    left: 50% !important;
-                                    position: absolute !important;
-                                    content: '' !important;
-                                    width: 1px !important;
-                                    background-color: var(--color-secondary) !important;
-                                    height: 260px !important;
-                                    top: 0 !important;
-                                    transform: translateX(-50%) !important;
-                                }
-                                .card-show-{{ forloop.index }} {
-                                    /* Apply the same dynamic Liquid values for height, now horizontally */
-                                    min-width: calc(({{ time_difference }} / 1440 * 100%) - 10px);
-                                    max-width: calc(({{ time_difference }} / 1440 * 100%) - 10px);
-                                    margin-bottom: 0 !important;
-                                    margin-right: 10px !important;
-                                    min-height: 0 !important;
-                                    max-height: initial !important;
-                                }
-                                .card-fill{
-                                    min-width: {{firstoffset}}% !important;
-                                    max-width: {{firstoffset}}% !important;
-                                    margin-left: 10px !important;
-                                    min-height: 0 !important;
-                                    max-height: initial !important;
-                                }
-                            }
-                        </style>
-                    {% endfor %}
-                {% endfor %}
             </div>
+            <style>
+                @media (min-width: 1200px) {
+                    .current-time {
+                        left: calc({
+                                {
+                                percentageGone
+                            }
+                        }
+
+                        %) !important;
+                    top: 50% !important;
+                    translate: 0 -50%;
+                }
+
+                .current-time::after {
+                    left: 50% !important;
+                    position: absolute !important;
+                    content: '' !important;
+                    width: 1px !important;
+                    background-color: var(--color-secondary) !important;
+                    height: 260px !important;
+                    top: 0 !important;
+                    transform: translateX(-50%) !important;
+                }
+
+                .card-show- {
+                        {
+                        forloop.index
+                    }
+                }
+
+                    {
+
+                    /* Apply the same dynamic Liquid values for height, now horizontally */
+                    min-width: calc(({
+                                {
+                                time_difference
+                            }
+                        }
+
+                        / 1440 * 100%) - 10px);
+                max-width: calc(({
+                            {
+                            time_difference
+                        }
+                    }
+
+                    / 1440 * 100%) - 10px);
+                margin-bottom: 0 !important;
+                margin-right: 10px !important;
+                min-height: 0 !important;
+                max-height: initial !important;
+                }
+
+                .card-fill {
+                    min-width: {
+                            {
+                            firstoffset
+                        }
+                    }
+
+                    % !important;
+
+                    max-width: {
+                            {
+                            firstoffset
+                        }
+                    }
+
+                    % !important;
+                    margin-left: 10px !important;
+                    min-height: 0 !important;
+                    max-height: initial !important;
+                }
+                }
+            </style>
+            {% endfor %}
+            {% endfor %}
+        </div>
 
         </div>
 
     </main>
-{%  render 'partials/footer.liquid' thisstation: thisstation, stationName: stationNameGenerated v: "o" %}
+    {% render 'partials/footer.liquid' thisstation: thisstation, stationName: stationNameGenerated v: "o" %}
 
 </body>
