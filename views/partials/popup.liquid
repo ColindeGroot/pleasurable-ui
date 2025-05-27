@@ -57,7 +57,7 @@
             type="image/avif">
         <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=webp"
             type="image/webp">
-        <img src="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}"
+        <img id="dj-img" src="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}"
             alt="Foto van {{ upcomingShow.name  }}" class="show-logo" width="{{ upcomingShow.headermobile.width }}"
             height="{{ upcomingShow.headermobile.height }}">
     </picture>
@@ -79,6 +79,10 @@ function open() {
 
     // stuurt aan om de elementen onder elkaar te centreren
     let CenterItems = document.getElementById('pp-layout');
-    CenterItems.classList.toggle('popup-layout-animated')
+    CenterItems.classList.add('popup-layout-animated')
+
+    // stuurt aan om de knoppen te verstoppen
+    let openInfo = document.getElementById('bekijk-meer-popup');
+    openInfo.classList.add('hide-btn')
 }
 </script>

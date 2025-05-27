@@ -316,3 +316,7 @@
     margin: 0;
     border-radius: 0;
 }
+
+.hide-btn {
+    display: none;
+}
