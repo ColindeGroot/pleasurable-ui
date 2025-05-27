@@ -6,9 +6,13 @@
         <strong class="popup-status">Bijna live!</strong>
 
         <picture class="show-logo">
-            <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=avif" type="image/avif">
-            <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=webp" type="image/webp">
-            <img src="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}"  alt="Foto van {{ upcomingShow.name  }}" class="deejay-image" width="{{ upcomingShow.headermobile.width }}" height="{{upcomingShow.headermobile.height }}">
+            <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=avif"
+                type="image/avif">
+            <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=webp"
+                type="image/webp">
+            <img src="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}"
+                alt="Foto van {{ upcomingShow.name  }}" class="deejay-image"
+                width="{{ upcomingShow.headermobile.width }}" height="{{upcomingShow.headermobile.height }}">
         </picture>
 
 
@@ -22,7 +26,8 @@
                             fill="#8B8B8B" />
                     </svg>
                 </dt>
-                <dd><time datetime="{{upcomingShow.from}}">{{upcomingShow.from}}</time> - <time datetime="{{upcomingShow.until}}">{{upcomingShow.until}}</time></dd>
+                <dd><time datetime="{{upcomingShow.from}}">{{upcomingShow.from}}</time> - <time
+                        datetime="{{upcomingShow.until}}">{{upcomingShow.until}}</time></dd>
 
                 <dt>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -41,10 +46,19 @@
 
     <div class="popup-buttons">
         <button class="popup-button">bekijk meer</button>
-        <button class="popup-button" popovertarget="my-popover">Sluit</button>
+        <button class="popup-button" id="close-popup" popovertarget="my-popover">Sluit</button>
     </div>
 
 </dialog>
 
-        <button class="open-button" popovertarget="my-popover">open popup</button>
-
+<button id="open-popup" popovertarget="my-popover" aria-label="Bekijk show">
+    <picture class="show-popup">
+        <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=avif"
+            type="image/avif">
+        <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=webp"
+            type="image/webp">
+        <img src="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}"
+            alt="Foto van {{ upcomingShow.name  }}" class="show-logo" width="{{ upcomingShow.headermobile.width }}"
+            height="{{ upcomingShow.headermobile.height }}">
+    </picture>
+</button>

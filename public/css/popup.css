@@ -13,7 +13,7 @@
      top: 90%;
      transform: translate(-50%, -90%);
 
-     z-index: 999;
+     z-index: 11;
      width: 80%;
      min-width: 200px;
      max-width: 400px;
@@ -69,6 +69,11 @@
      width: calc(100% - 2rem)
  }
 
+ /* verbergen van de popup open knop als popup al open is */
+ dialog:popover-open+#open-popup {
+     display: inline-block;
+ }
+
  @supports not selector([]) {
 
      /*support voor de selector*/
@@ -80,7 +85,17 @@
 
      [popover]:popover-open {
          /*als op de knop word gedrukt sluiten*/
+         display: none;
          opacity: 0;
+     }
+
+     /* laat open-knop zien als popup gesloten is */
+     dialog+#open-popup {
+         display: none;
+     }
+
+       dialog.closed+#open-popup {
+         display: none;
      }
 
  }
@@ -91,9 +106,10 @@
      justify-content: start;
      gap: 1em;
      padding: 2rem 1rem 0 1rem;
-      @media (min-width:500px) {
-        flex-flow: row;
-      }
+
+     @media (min-width:500px) {
+         flex-flow: row;
+     }
  }
 
  .popup-status {
@@ -108,20 +124,51 @@
      z-index: 10;
  }
 
- .popup picture img {
+ #open-popup {
+     z-index: 99;
+     display: inline-block;
+
+     border-radius: 50%;
+     border: none;
+
+     height: 70px;
+     width: 70px;
+
+     position: fixed;
+     bottom: 8em;
+     right: 5vw;
+    
+     &:hover {
+         animation: bounce 1.3s ease-in-out;
+     }
+
+     @media (min-width:400px) {
+         right: 5em;
+         height: 90px;
+         width: 90px;
+     }
+ }
+
+ .popup picture img,
+ .show-popup img {
      border-radius: 50%;
      width: 70px;
      height: 70px;
-    object-fit: cover;
+     object-fit: cover;
  }
 
+
  @media (min-width:500px) {
-     .popup picture img {
-         width: 120px;
-        height: 120px;
+
+     .popup picture img,
+     .show-popup img {
+         width: 90px;
+         height: 90px;
 
      }
  }
+
+
 
  .popup-title {
      margin-bottom: 1em;
@@ -164,4 +211,24 @@
  .popup-button:hover,
  .popup-button:focus {
      flex: 1 1 100%;
+ }
+
+ @keyframes bounce {
+
+     /* vaste plek op deze precentages */
+     0%,
+     20%,
+     50%,
+     80%,
+     100% {
+         transform: translateY(0);
+     }
+
+     40% {
+         transform: translateY(-30px);
+     }
+
+     60% {
+         transform: translateY(-15px);
+     }
  }
