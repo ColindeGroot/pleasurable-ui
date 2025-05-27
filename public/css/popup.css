@@ -118,13 +118,6 @@
          }
      }
  }
- 
- .animated-popup-bg {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    border-radius: 0;
-}
 
  dl {
      display: flex;
@@ -305,6 +298,8 @@
      }
  }
 
+ 
+
  /* ANIMATIE */
  .popup-layout-animated {
     display: flex;
@@ -312,4 +307,12 @@
     justify-content: center;
     justify-items: center;
     text-align: center;
+}
+
+.animated-popup-bg {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    margin: 0;
+    border-radius: 0;
 }
