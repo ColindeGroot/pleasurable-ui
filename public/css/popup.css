@@ -30,6 +30,7 @@
         flex-direction: column;
         justify-content: center; /* horizontaal centreren */
         align-items: center; /* vertical centreren */
+        text-align: center;
     }
 
     /* Stap 3: Ik ga het via JS werkend maken */
