@@ -4,6 +4,19 @@
      --popup-dark: #000;
  }
 
+  /* Animatie deel 3: 'bekijk meer' interactie */
+
+  /* Stap 1: Ik ga de achtergrond van de popup het gehele beeld laten overdekken */
+
+/* Stap 2: Ik ga de elementen binnen de popup onder elkaar uitlijnen */
+
+/* Stap 3: Ik ga het via JS werkend maken */
+
+/* Stap 4: Ik ga de animatie smooth laten verlopen */
+
+ /* EINDE animatie deel 3: 'bekijk meer' klik */
+ 
+
  .popup {
      opacity: 1;
      scale: 1;
