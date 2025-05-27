@@ -26,6 +26,11 @@
         display: none;
     }
 
+    #popup-entails {
+        flex-direction: column;
+        justify-content: center; /* horizontaal centreren */
+        align-items: center; /* vertical centreren */
+    }
 
     /* Stap 3: Ik ga het via JS werkend maken */
 
