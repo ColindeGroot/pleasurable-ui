@@ -237,28 +237,43 @@ app.get('/', async function (req, res) {
   res.render('index.liquid', { radiostations: radiostationsResponseJSON.data })
 })
 
+
 // BOOKMARKS PAGINA
 app.get('/bookmarks', async function (req, res) {
-  const bookmarkUrl = "https://fdnd-agency.directus.app/items/mh_shows?fields=*.*.*.*,show.users.mh_users_id.cover.*";
 
-  const bookmarkResponse = await fetch(bookmarkUrl);
-  const bookmarkResponseJSON = await bookmarkResponse.json();
-
+  const allShowsAllStations = "https://fdnd-agency.directus.app/items/mh_shows?fields=*.*.*.*,show.users.mh_users_id.cover.*&limit=-1";
+  const allShowsAllStationsFetch = await fetch(allShowsAllStations);
+  const allShowsAllStationsFetchJSON = await allShowsAllStationsFetch.json();
+  const nestedShows = [];
   const radioData = radiostationsResponseJSON.data;
+  allShowsAllStationsFetchJSON.data.forEach(function (show) {
 
-
-  const { data } = bookmarkResponseJSON;
-  // console.log(data);
-
-  if (!data || data.length === 0) {
-    return res.send('No data found!');
-  }
-
-  res.render('bookmarks.liquid', {
-    bookmarks: data,
-    radioData: radioData
+    nestedShows.push({
+      ...show.show,
+      from: show.from,
+      until: show.until,
+    });
   });
-});
+  nestedShows.sort((a, b) => new Date(a.from) - new Date(b.from));
+  let bookmarkIds = [];
+  const bookmarks = await fetch('https://fdnd-agency.directus.app/items/mh_messages?filter={"from":"1G"}')
+  const bookmarksResponseJSON = await bookmarks.json();
+  bookmarksResponseJSON.data.forEach(oneBookmark => {
+    bookmarkIds.push(oneBookmark.for);
+  });
+
+  const bookmarkIdsNumber = bookmarkIds.map(id => parseInt(id));
+  let bookmarkedShowObjects = nestedShows.filter(show =>
+    bookmarkIdsNumber.includes(show.id)
+  );
+    bookmarkedShowObjects = bookmarkedShowObjects.filter((show, index, self) =>
+    index === self.findIndex(s => s.id === show.id)
+  );
+  res.render('bookmarks.liquid', {
+    bookmarkedShowObjects: bookmarkedShowObjects,
+    radioData: radioData
+  })
+})
 
 app.get('/testpage', async function (req, res) {
   res.render('testpage.liquid')
