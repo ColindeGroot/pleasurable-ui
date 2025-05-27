@@ -1,7 +1,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<dialog class="popup" popover id="animated-popup-bg">
+<dialog class="popup"  id="animated-popup-bg">
     <div class="popup-layout" id="popup-entails">
         <strong class="popup-status" id="bijna-live-animated">Bijna live!</strong>
 
@@ -41,9 +41,6 @@
 
             </dl>
         </div>
-        {% comment %} Placeholders voor visuele animatie  {% endcomment %}
-    <p id="body-text-animated">{{ upcomingShow.show. | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}}</p>
-    <button id="close-info-popup">cross</button>
     </div>
 
     <div class="popup-buttons">
@@ -64,3 +61,7 @@
             height="{{ upcomingShow.headermobile.height }}">
     </picture>
 </button>
+
+{% comment %} <script>
+    let bekijkMeerBtn = document.queryselector('#')
+</script> {% endcomment %}

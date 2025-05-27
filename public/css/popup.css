@@ -9,16 +9,24 @@
 /* Animatie deel 3: 'bekijk meer' interactie */
 
     /* Stap 1: Ik ga de achtergrond van de popup het gehele beeld laten overdekken */
-    #animated-popup-bg {
+    /* #animated-popup-bg {
         width: 100vw;
         height: 100vh;
         margin: 0;
         border-radius: 0;
+    } */
+/* 
+    .close-info-btn {
+        display: none;
     }
+
+    .body-text {
+        display: none;
+    } */
 
     /* Stap 2: Ik ga de elementen binnen de popup onder elkaar uitlijnen */
 
-    #bekijk-meer-popup {
+    /* #bekijk-meer-popup {
         display: none;
     }
 
@@ -28,8 +36,8 @@
 
     #popup-entails {
         flex-direction: column;
-        justify-content: center; /* horizontaal centreren */
-        align-items: center; /* vertical centreren */
+        justify-content: center; 
+        align-items: center; 
         text-align: center;
     }
 
@@ -64,7 +72,7 @@
        top: 1rem;
        right: 1rem;
        padding: 10px;
-    }
+    } */
 
     /* Stap 3: Ik ga het via JS werkend maken */
 
