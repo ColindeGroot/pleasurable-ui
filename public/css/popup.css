@@ -50,6 +50,22 @@
         top: 12em;
     }
 
+    #body-text-animated {
+        text-align: center;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin: 0;
+        line-height: 1.5;
+        color: #8B8B8B;
+    }
+
+    #close-info-popup {
+       position: absolute;
+       top: 1rem;
+       right: 1rem;
+       padding: 10px;
+    }
+
     /* Stap 3: Ik ga het via JS werkend maken */
 
     /* Stap 4: Ik ga de animatie smooth laten verlopen */
