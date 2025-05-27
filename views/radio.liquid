@@ -1,8 +1,6 @@
 
 {% render 'partials/head.liquid' pageTitle: "{{thisstation}}" style:thisstation stylesheet: "radio"%}
 
-{% render 'partials/popup.liquid' upcomingShow: upcomingShow %}
-
 {% comment %} <pre>{{ thisWeekShows | json | replace: ',', ",\n" | replace: '{', "{\n" | replace: '}', "\n}" }}</pre> {% endcomment %}
 {% comment %} Start of Chat GPT Code [Calc percentage of minutes pased] {% endcomment %}
 {% assign curTime = "now" | date: "%H:%M", "Europe/Amsterdam"%}
@@ -133,7 +131,7 @@
                                     <h3 class="text-l">{{oneshow.name}}</h3>
                                     <dl>
                                         <dt class="show-time">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
                                                 <path d="M6.66667 0C2.99333 0 0 2.99333 0 6.66667C0 10.34 2.99333 13.3333 6.66667 13.3333C10.34 13.3333 13.3333 10.34 13.3333 6.66667C13.3333 2.99333 10.34 0 6.66667 0ZM6.66667 12C3.72667 12 1.33333 9.60667 1.33333 6.66667C1.33333 3.72667 3.72667 1.33333 6.66667 1.33333C9.60667 1.33333 12 3.72667 12 6.66667C12 9.60667 9.60667 12 6.66667 12Z" fill="#8B8B8B"/>
                                                 <path d="M7.33333 3H6V7.27333L8.86 10.14L9.80667 9.19333L7.33333 6.72667V3Z" fill="#8B8B8B"/>
                                             </svg>
@@ -141,7 +139,7 @@
                                         <dd class="show-time"><time datetime="{{oneshow.from}}">{{oneshow.from}}</time> - <time datetime="{{oneshow.until}}">{{oneshow.until}}</time></dd>
 
                                         <dt class="show-deejay">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
+                                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
                                                 <path d="M6.00033 6.66667C7.84033 6.66667 9.33366 5.17333 9.33366 3.33333C9.33366 1.49333 7.84033 0 6.00033 0C4.16033 0 2.66699 1.49333 2.66699 3.33333C2.66699 5.17333 4.16033 6.66667 6.00033 6.66667ZM6.00033 1.33333C7.10033 1.33333 8.00033 2.23333 8.00033 3.33333C8.00033 4.43333 7.10033 5.33333 6.00033 5.33333C4.90033 5.33333 4.00033 4.43333 4.00033 3.33333C4.00033 2.23333 4.90033 1.33333 6.00033 1.33333Z" fill="#8B8B8B"/>
                                                 <path d="M0 8V12.6667H12V8H0ZM10.6667 11.3333H1.33333V9.33333H10.6667V11.3333Z" fill="#8B8B8B"/>
                                             </svg>
