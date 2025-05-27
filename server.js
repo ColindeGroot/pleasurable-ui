@@ -52,11 +52,12 @@ app.get('/radio/:name/programmering{/:dayname}', async function (req, res) {
   let daysResponse;
   let dayID;
   if (req.params.dayname == undefined) {
-    daysResponse = await fetch('https://fdnd-agency.directus.app/items/mh_day?fields=*,shows.mh_shows_id.show');
+      let todayDayNum = new Date().getDay();
+      console.log('https://fdnd-agency.directus.app/items/mh_day?fields=*,shows.mh_shows_id.show&filter={"sort":"' + todayDayNum + '"}');
+    daysResponse = await fetch('https://fdnd-agency.directus.app/items/mh_day?fields=*,shows.mh_shows_id.show&filter={"sort":"' + todayDayNum + '"}');
   }
   else {
     dayID = dayNames.findIndex(day => day === req.params.dayname);
-    console.log(dayID);
     daysResponse = await fetch('https://fdnd-agency.directus.app/items/mh_day?fields=*,shows.mh_shows_id.show&filter={"sort":"' + dayID + '"}');
   }
   const daysResponseJSON = await daysResponse.json();
@@ -73,7 +74,8 @@ app.get('/radio/:name/programmering{/:dayname}', async function (req, res) {
     thisWeekshows.push({
       day: dayofWeekJSON,
       dayName: dayNames[dayofWeekJSON],
-      shows: showIDs
+      shows: showIDs,
+      date: day.date
     });
   });
   const now = new Date()
@@ -104,8 +106,6 @@ app.get('/radio/:name/programmering{/:dayname}', async function (req, res) {
   });
 
   // End of Chat GPT code
-
-
 
 
   const stationArr = req.params.name;
@@ -157,6 +157,62 @@ app.get('/radio/:name/programmering{/:dayname}', async function (req, res) {
 
   }
 
+  // console.log(updatedWeekShowsforStation);
+  nestedShows.forEach(nestedShow => {
+    updatedWeekShowsforStation.forEach(day => {
+      const { date, day: dayNum, dayName } = day;
+
+      const isInDay = day.shows.find(show => show.id === nestedShow.id);
+      if (isInDay) {
+        nestedShow.date = date;
+        nestedShow.day = dayNum;
+        nestedShow.dayName = dayName;
+      }
+    });
+  });
+
+  let bookmarkIds = [];
+  const bookmarks = await fetch('https://fdnd-agency.directus.app/items/mh_messages?filter={"from":"1G"}')
+  const bookmarksResponseJSON = await bookmarks.json();
+  bookmarksResponseJSON.data.forEach(oneBookmark => {
+    bookmarkIds.push(oneBookmark.for);
+  });
+
+  const bookmarkIdsNumber = bookmarkIds.map(id => parseInt(id));
+  let bookmarkedShowObjects = nestedShows.filter(show =>
+    bookmarkIdsNumber.includes(show.id)
+  );
+  //remove duplicate on book.liquid
+  bookmarkedShowObjects = bookmarkedShowObjects.filter((show, index, self) =>
+    index === self.findIndex(s => s.id === show.id)
+  );
+
+let hour = now.getHours();
+hour = ("0" + hour).slice(-2); // zet een 0 voor de uren als nodig
+
+let minute = now.getMinutes();
+
+let time = hour + ":" + minute + ":00";
+
+  function timeToSeconds(timeStr) { // Zodat een tijd van 00:00:00 niet nog niet geweest is volgens de kut code. nu is 00:00:00 gewoon int(0)
+    const [hours, minutes, seconds] = timeStr.split(":").map(Number);
+    return hours * 3600 + minutes * 60 + seconds;
+  }
+  const found = bookmarkedShowObjects.find((bookmarkedShowObject) => bookmarkedShowObject.from > time);
+  const upcomingShow = bookmarkedShowObjects.find(bookmarkedShowObject => {
+    if (timeToSeconds(time) < timeToSeconds(bookmarkedShowObject.from)){
+      console.log(bookmarkedShowObject.name + "is nog niet geweest" + bookmarkedShowObject.from)
+      return true; // first upcoming show
+    }
+    else{
+      console.log(bookmarkedShowObject.name + "is al geweest" + bookmarkedShowObject.from)
+      return false; // all passed shows
+    }
+  });
+  console.log('First upcoming show:', upcomingShow);
+
+
+
   res.render('radio.liquid', {
     showsforStation: showsforStationJSON.data,
     stationNameGenerated: stationArr,
@@ -167,9 +223,12 @@ app.get('/radio/:name/programmering{/:dayname}', async function (req, res) {
     radiostations: radiostationsResponseJSON.data,
     thisstation: stationID,
     today: today,
-    todayName: req.params.dayname
+    todayName: todayName,
+    bookmarkedShows: bookmarkedShowObjects,
+    upcomingShow: upcomingShow
   });
 });
+
 
 
 
@@ -253,7 +312,6 @@ app.post('/radio/:name/programmering/:id/unmark', async (req, res) => {
     res.status(500).send("Unmark failed!");
   }
 });
-
 // Stel het poortnummer in waar Express op moet gaan luisteren
 // Lokaal is dit poort 8000; als deze applicatie ergens gehost wordt, waarschijnlijk poort 80
 app.set('port', process.env.PORT || 8000)

@@ -26,7 +26,6 @@
 }
 
 nav.day-menu{
-                width: calc(100vw);
                 ul{
                     display: flex;
                     list-style: none;
