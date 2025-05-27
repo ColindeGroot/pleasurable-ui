@@ -45,7 +45,7 @@
     </div>
 
     <div class="popup-buttons">
-        <button class="popup-button">bekijk meer</button>
+        <button class="popup-button" id="bekijk-meer-popup">bekijk meer</button>
         <button class="popup-button" id="close-popup" popovertarget="my-popover">Sluit</button>
     </div>
 
@@ -62,3 +62,18 @@
             height="{{ upcomingShow.headermobile.height }}">
     </picture>
 </button>
+
+<script>
+
+// Stap 1: querySelector
+let bekijkMeerBtn = document.querySelector('#bekijk-meer-popup')
+
+// Stap 2: addEventListener
+bekijkMeerBtn.addEventListener('click', open)
+
+function open() {
+  // Stap 3: functie geven
+  let dialog = document.querySelector('dialog');
+  dialog.classList.add('animated-popup-bg')
+}
+</script>

@@ -9,12 +9,12 @@
 /* Animatie deel 3: 'bekijk meer' interactie */
 
     /* Stap 1: Ik ga de achtergrond van de popup het gehele beeld laten overdekken */
-    /* #animated-popup-bg {
+    .animated-popup-bg {
         width: 100vw;
         height: 100vh;
         margin: 0;
         border-radius: 0;
-    } */
+    }
 /* 
     .close-info-btn {
         display: none;
