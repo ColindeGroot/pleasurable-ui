@@ -262,7 +262,9 @@ app.get('/bookmarks', async function (req, res) {
   let bookmarkedShowObjects = nestedShows.filter(show =>
     bookmarkIdsNumber.includes(show.id)
   );
-
+    bookmarkedShowObjects = bookmarkedShowObjects.filter((show, index, self) =>
+    index === self.findIndex(s => s.id === show.id)
+  );
   res.render('bookmarks.liquid', {
     bookmarkedShowObjects: bookmarkedShowObjects
   })
