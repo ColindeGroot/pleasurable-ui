@@ -18,6 +18,15 @@
 
     /* Stap 2: Ik ga de elementen binnen de popup onder elkaar uitlijnen */
 
+    #bekijk-meer-popup {
+        display: none;
+    }
+
+    #close-popup {
+        display: none;
+    }
+
+
     /* Stap 3: Ik ga het via JS werkend maken */
 
     /* Stap 4: Ik ga de animatie smooth laten verlopen */
