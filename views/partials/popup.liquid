@@ -2,7 +2,7 @@
 
 
 <dialog class="popup" popover id="my-popover">
-    <div class="popup-layout">
+    <div id="pp-layout" class="popup-layout">
         <strong class="popup-status">Bijna live!</strong>
 
         <picture class="show-logo">
@@ -72,8 +72,13 @@ let bekijkMeerBtn = document.querySelector('#bekijk-meer-popup')
 bekijkMeerBtn.addEventListener('click', open)
 
 function open() {
-  // Stap 3: functie geven
-  let dialog = document.querySelector('dialog');
-  dialog.classList.add('animated-popup-bg')
+// Stap 3: functie geven
+    // stuurt aan om de achtergrond van de popup het scherm te laten overlappen   
+    let dialog = document.querySelector('dialog');
+    dialog.classList.add('animated-popup-bg')
+
+    // stuurt aan om de elementen onder elkaar te centreren
+    let CenterItems = document.getElementById('pp-layout');
+    CenterItems.classList.toggle('popup-layout-animated')
 }
 </script>
