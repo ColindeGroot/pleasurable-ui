@@ -41,17 +41,15 @@
 
             </dl>
         </div>
-
+        {% comment %} Placeholders voor visuele animatie  {% endcomment %}
+    <p id="body-text-animated">{{ upcomingShow.show. | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}}</p>
+    <button id="close-info-popup">cross</button>
     </div>
 
     <div class="popup-buttons">
         <button class="popup-button" id="bekijk-meer-popup" >bekijk meer</button>
         <button class="popup-button" id="close-popup" popovertarget="my-popover">Sluit</button>
     </div>
-
-    {% comment %} Placeholders voor visuele animatie  {% endcomment %}
-    <p id="body-text-animated">{{ upcomingShow.show. | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}}</p>
-    <button id="close-info-popup">cross</button>
 
 </dialog>
 
