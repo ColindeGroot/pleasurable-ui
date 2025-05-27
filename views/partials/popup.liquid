@@ -3,7 +3,7 @@
 
 <dialog class="popup" popover id="animated-popup-bg">
     <div class="popup-layout" id="popup-entails">
-        <strong class="popup-status">Bijna live!</strong>
+        <strong class="popup-status" id="bijna-live-animated">Bijna live!</strong>
 
         <picture class="show-logo">
             <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=avif"
@@ -52,7 +52,7 @@
 </dialog>
 
 <button id="open-popup" popovertarget="my-popover" aria-label="Bekijk show">
-    <picture class="show-popup">
+    <picture class="show-popup" id="animated-dj">
         <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=avif"
             type="image/avif">
         <source srcset="https://fdnd-agency.directus.app/assets/{{upcomingShow.headermobile.id}}?format=webp"

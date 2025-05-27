@@ -33,6 +33,23 @@
         text-align: center;
     }
 
+    #popup-animated {
+        width: 140px;
+        height: 140px;
+    }
+
+    #animated-popup-bg picture img,
+    #animated-dj  {
+        border-radius: 50%;
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+    }
+
+    #bijna-live-animated {
+        top: 12em;
+    }
+
     /* Stap 3: Ik ga het via JS werkend maken */
 
     /* Stap 4: Ik ga de animatie smooth laten verlopen */
