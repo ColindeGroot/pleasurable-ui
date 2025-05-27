@@ -232,8 +232,9 @@
                     }
                     
                     else{
-
+                        new Audio('/assets/noti.mp3').play();
                     }
+
                     const responseText = await response.text()
                     const parser = new DOMParser()
                     const responseDOM = parser.parseFromString(responseText, 'text/html')
@@ -245,6 +246,7 @@
                     console.log(responseDOM);
                     console.log(newState.outerHTML);
                     likedCard.outerHTML = newState.outerHTML
+
                     // remove old state
                     let newForm = document.querySelector('[data-enhanced="' + form.getAttribute('data-enhanced') + '"]')
                     let updatedCard = newForm.closest('article');
