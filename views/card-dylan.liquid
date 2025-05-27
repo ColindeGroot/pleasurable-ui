@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Test Card</title>
+        <link rel="preload" href="/fonts/BrutalType-Bold.ttf" as="font" type="font/ttf" >
+        <link rel="preload" href="/fonts/BrutalType.ttf" as="font" type="font/ttf" >
+        <link rel="stylesheet" href="/css/general.css">
+        <link rel="stylesheet" href="/css/colors-1.css">
+        <link rel="stylesheet" href="/css/card-dylan.css">
+
+
+    </head>
+    <body>
+       <article class="card-show">
+            <div class="show-data">
+                <picture>
+                    <source type="image/avif" srcset="/assets/show-test.avif">
+                    <source type="image/webp" srcset="/assets/show-test.webp">
+                    <img fetchpriority="high" src="/assets/show-test.png" width="160" height="160" alt="Show titel" title="Logo van de show">
+                </picture>
+                <div class="show-details">
+                    <h3 class="text-l">Oh wat een nacht</h3>
+                    <dl>
+                        <dt>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M6.66667 0C2.99333 0 0 2.99333 0 6.66667C0 10.34 2.99333 13.3333 6.66667 13.3333C10.34 13.3333 13.3333 10.34 13.3333 6.66667C13.3333 2.99333 10.34 0 6.66667 0ZM6.66667 12C3.72667 12 1.33333 9.60667 1.33333 6.66667C1.33333 3.72667 3.72667 1.33333 6.66667 1.33333C9.60667 1.33333 12 3.72667 12 6.66667C12 9.60667 9.60667 12 6.66667 12Z" fill="#8B8B8B"/>
+                                <path d="M7.33333 3H6V7.27333L8.86 10.14L9.80667 9.19333L7.33333 6.72667V3Z" fill="#8B8B8B"/>
+                            </svg>
+                        </dt>
+                        <dd>12:00 - 14:00</dd>
+
+                        <dt>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
+                                <path d="M6.00033 6.66667C7.84033 6.66667 9.33366 5.17333 9.33366 3.33333C9.33366 1.49333 7.84033 0 6.00033 0C4.16033 0 2.66699 1.49333 2.66699 3.33333C2.66699 5.17333 4.16033 6.66667 6.00033 6.66667ZM6.00033 1.33333C7.10033 1.33333 8.00033 2.23333 8.00033 3.33333C8.00033 4.43333 7.10033 5.33333 6.00033 5.33333C4.90033 5.33333 4.00033 4.43333 4.00033 3.33333C4.00033 2.23333 4.90033 1.33333 6.00033 1.33333Z" fill="#8B8B8B"/>
+                                <path d="M0 8V12.6667H12V8H0ZM10.6667 11.3333H1.33333V9.33333H10.6667V11.3333Z" fill="#8B8B8B"/>
+                            </svg>
+                        </dt>
+                        <dd>Martijn Muijs</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="show-buttons">
+
+                <form method="post" class="form-bookmark" action="/radio/{{stationNameGeneratedEncoded}}/programmering/{{deejay.mh_users_id.id}}/bookmark">
+                    <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path d="M11.0834 3.5C11.0834 2.5335 10.2999 1.75 9.33341 1.75H4.66675C3.70022 1.75 2.91675 2.5335 2.91675 3.5V11.6998C2.91675 12.1743 3.45307 12.4503 3.83911 12.1745L6.66106 10.1589C6.86387 10.014 7.13629 10.014 7.33911 10.1589L10.161 12.1745C10.5471 12.4503 11.0834 12.1743 11.0834 11.6998V3.5Z" stroke="white" stroke-width="2"/>
+                        </svg>
+                        Bookmark
+                    </button>
+                </form>
+                <a href="/" class="button">MEER</a>
+            </div>
+            
+        </article> 
+    </body>
+
