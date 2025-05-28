@@ -229,10 +229,10 @@ let time = hour + ":" + minute + ":00";
   });
 });
 
-
 app.get('/', async function (req, res) {
   res.render('index.liquid', { radiostations: radiostationsResponseJSON.data })
 })
+
 
 // BOOKMARKS PAGINA
 app.get('/bookmarks', async function (req, res) {
@@ -241,7 +241,7 @@ app.get('/bookmarks', async function (req, res) {
   const allShowsAllStationsFetch = await fetch(allShowsAllStations);
   const allShowsAllStationsFetchJSON = await allShowsAllStationsFetch.json();
   const nestedShows = [];
-
+  const radioData = radiostationsResponseJSON.data;
   allShowsAllStationsFetchJSON.data.forEach(function (show) {
 
     nestedShows.push({
@@ -266,15 +266,15 @@ app.get('/bookmarks', async function (req, res) {
     index === self.findIndex(s => s.id === show.id)
   );
   res.render('bookmarks.liquid', {
-    bookmarkedShowObjects: bookmarkedShowObjects
+
+    bookmarkedShowObjects: bookmarkedShowObjects,
+    radioData: radioData
   })
 })
-
 
 app.get('/testpage', async function (req, res) {
   res.render('testpage.liquid')
 })
-
 
 // Dylan. Kan jij checken of de route klopt en anders ff aanpassen? zelfde bij de delete please
 app.post('/radio/:name/programmering/:id/bookmark', async (req, res) => {
@@ -323,7 +323,6 @@ app.post('/radio/:name/programmering/:id/unmark', async (req, res) => {
     res.status(500).send("Unmark failed!");
   }
 });
-
 // Stel het poortnummer in waar Express op moet gaan luisteren
 // Lokaal is dit poort 8000; als deze applicatie ergens gehost wordt, waarschijnlijk poort 80
 app.set('port', process.env.PORT || 8000)
