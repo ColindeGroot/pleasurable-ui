@@ -2,3 +2,6 @@
 
 @import url("./head.css"); /* Main styling */
 @import url("./footer.css"); /* Main styling */
+
+@import url("./popup-ui-cla.css"); /* popup */
+@import url("./popup.css"); /* popup */

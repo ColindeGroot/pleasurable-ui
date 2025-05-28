@@ -1,6 +1,9 @@
 
 {% render 'partials/head.liquid' pageTitle: "{{thisstation}}" style:thisstation stylesheet: "radio"%}
 
+
+{% render 'partials/popup.liquid' upcomingShow: upcomingShow %}
+
 {% comment %} <pre>{{ thisWeekShows | json | replace: ',', ",\n" | replace: '{', "{\n" | replace: '}', "\n}" }}</pre> {% endcomment %}
 {% comment %} Start of Chat GPT Code [Calc percentage of minutes pased] {% endcomment %}
 {% assign curTime = "now" | date: "%H:%M", "Europe/Amsterdam"%}
@@ -148,6 +151,7 @@
                                     </dl class="show-deejay">
                                 </div>
                             </div>
+
                             <div class="show-buttons">
 
                                 <form method="post" class="form-bookmark" action="/radio/{{stationNameGeneratedEncoded}}/programmering/{{oneshow.id}}/bookmark">

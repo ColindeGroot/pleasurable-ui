@@ -1,7 +1,7 @@
 // Importeer het npm package Express (uit de door npm aangemaakte node_modules map)
 // Deze package is geïnstalleerd via `npm install`, en staat als 'dependency' in package.json
 import express from 'express'
-
+import fs from 'fs';
 // Importeer de Liquid package (ook als dependency via npm geïnstalleerd)
 import { Liquid } from 'liquidjs';
 
@@ -229,10 +229,6 @@ let time = hour + ":" + minute + ":00";
   });
 });
 
-
-
-
-
 app.get('/', async function (req, res) {
   res.render('index.liquid', { radiostations: radiostationsResponseJSON.data })
 })
@@ -270,6 +266,7 @@ app.get('/bookmarks', async function (req, res) {
     index === self.findIndex(s => s.id === show.id)
   );
   res.render('bookmarks.liquid', {
+
     bookmarkedShowObjects: bookmarkedShowObjects,
     radioData: radioData
   })
