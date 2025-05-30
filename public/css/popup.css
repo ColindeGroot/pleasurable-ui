@@ -1,0 +1,234 @@
+ body {
+     --popup-pink: #E90166;
+     --popup-blue: #0076D1;
+     --popup-dark: #000;
+ }
+
+ .popup {
+     opacity: 1;
+     scale: 1;
+     overflow: visible;
+     position: fixed;
+     left: 50%;
+     top: 90%;
+     transform: translate(-50%, -90%);
+
+     z-index: 11;
+     width: 80%;
+     min-width: 200px;
+     max-width: 400px;
+
+     border: none;
+     border-radius: 10px;
+
+     box-shadow: 10px 20px 50px var(--popup-dark);
+
+     transition: all 0.4s ease-in-out;
+     transition-behavior: allow-discrete;
+
+     @starting-style {
+         scale: 0;
+         transform: translate(-50%, 100%);
+     }
+
+ }
+
+
+
+ @media (min-width: 800px) {
+     .popup {
+         left: 95%;
+         top: 95%;
+         transform: translate(-95%, -95%);
+
+         @starting-style {
+             scale: 0;
+             transform: translate(-90%, 100%);
+
+         }
+
+     }
+
+
+
+
+ }
+
+ dl {
+     display: flex;
+     flex-wrap: wrap;
+ }
+
+ dt {
+     width: 1rem;
+     margin-right: 1rem;
+ }
+
+ dd {
+     margin-left: auto;
+     width: calc(100% - 2rem)
+ }
+
+ /* verbergen van de popup open knop als popup al open is */
+ dialog:popover-open+#open-popup {
+     display: inline-block;
+ }
+
+ @supports not selector([]) {
+
+     /*support voor de selector*/
+     [popover] {
+         /* standaard openklappen */
+         opacity: 1;
+         display: block;
+     }
+
+     [popover]:popover-open {
+         /*als op de knop word gedrukt sluiten*/
+         display: none;
+         opacity: 0;
+     }
+
+     /* laat open-knop zien als popup gesloten is */
+     dialog+#open-popup {
+         display: none;
+     }
+
+       dialog.closed+#open-popup {
+         display: none;
+     }
+
+ }
+
+ .popup-layout {
+     display: flex;
+     flex-flow: row wrap;
+     justify-content: start;
+     gap: 1em;
+     padding: 2rem 1rem 0 1rem;
+
+     @media (min-width:500px) {
+         flex-flow: row;
+     }
+ }
+
+ .popup-status {
+     position: absolute;
+     top: -0.8em;
+     left: 50%;
+     transform: translateX(-50%);
+     background: var(--popup-pink);
+     color: var(--color-white);
+     padding: 0.25em 0.5em;
+     border-radius: 5px;
+     z-index: 10;
+ }
+
+ #open-popup {
+     z-index: 99;
+     display: inline-block;
+
+     border-radius: 50%;
+     border: none;
+
+     height: 70px;
+     width: 70px;
+
+     position: fixed;
+     bottom: 8em;
+     right: 5vw;
+    
+     &:hover {
+         animation: bounce 1.3s ease-in-out;
+     }
+
+     @media (min-width:400px) {
+         right: 5em;
+         height: 90px;
+         width: 90px;
+     }
+ }
+
+ .popup picture img,
+ .show-popup img {
+     border-radius: 50%;
+     width: 70px;
+     height: 70px;
+     object-fit: cover;
+ }
+
+
+ @media (min-width:500px) {
+
+     .popup picture img,
+     .show-popup img {
+         width: 90px;
+         height: 90px;
+
+     }
+ }
+
+
+
+ .popup-title {
+     margin-bottom: 1em;
+ }
+
+ .popup-buttons {
+     margin-top: 1em;
+     display: flex;
+     width: 100%;
+     min-width: 0;
+     overflow: hidden;
+ }
+
+ .popup-button {
+     flex: 1 1 50%;
+     min-width: 0;
+     font-weight: bold;
+     height: 2.5em;
+     border: none;
+     background: var(--popup-blue);
+     color: var(--color-white);
+     cursor: pointer;
+
+     transition: flex 0.2s ease-in-out, opacity 0.2s linear;
+     transition-behavior: allow-discrete;
+ }
+
+ .popup-button:first-child {
+     border-radius: 0 0 0 5px;
+     background-color: var(--popup-pink);
+ }
+
+ .popup-buttons:hover .popup-button:not(:hover) {
+     flex: 0 1 0;
+     pointer-events: none;
+     color: #00000000;
+     /* ontzichtbaar maken van de tekst in button voor een soepele overgang */
+ }
+
+ .popup-button:hover,
+ .popup-button:focus {
+     flex: 1 1 100%;
+ }
+
+ @keyframes bounce {
+
+     /* vaste plek op deze precentages */
+     0%,
+     20%,
+     50%,
+     80%,
+     100% {
+         transform: translateY(0);
+     }
+
+     40% {
+         transform: translateY(-30px);
+     }
+
+     60% {
+         transform: translateY(-15px);
+     }
+ }

@@ -57,7 +57,7 @@
 
 
 * {
-  margin: 0;
+  /* margin: 0; */
   padding: 0;
   box-sizing: border-box;
 }
@@ -74,9 +74,9 @@ body{
     --text-xl: 1.75rem; /* 28px */
     --text-xxl: 3.625rem; /* 58px */
     font-family: 'BrutalType', sans-serif;
-    --one-day: 2000px; /* 1 day in px for the timetables. Increasing this will increase eaxch timeblock. */
+    --one-day: 4000px; /* 1 day in px for the timetables. Increasing this will increase eaxch timeblock. */
     @media (min-width: 1200px){
-      --one-day: 7500px;
+      --one-day: 5000px;
     }
     
 }
@@ -87,9 +87,9 @@ list-style-type: none;
 padding: 0;
 margin: 0;
 }
-svg > * {
+/* svg > * {
     fill: black;
-}
+} */
 a{
   color: inherit;
   text-decoration: none;
