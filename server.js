@@ -172,7 +172,7 @@ app.get('/radio/:name/programmering{/:dayname}', async function (req, res) {
   });
 
   let bookmarkIds = [];
-  const bookmarks = await fetch('https://fdnd-agency.directus.app/items/mh_messages?filter={"from":"1G"}')
+  const bookmarks = await fetch('https://fdnd-agency.directus.app/items/mh_messages?filter={"from":"1G"}&limit=-1')
   const bookmarksResponseJSON = await bookmarks.json();
   bookmarksResponseJSON.data.forEach(oneBookmark => {
     bookmarkIds.push(oneBookmark.for);
@@ -210,8 +210,6 @@ let time = hour + ":" + minute + ":00";
     }
   });
   console.log('First upcoming show:', upcomingShow);
-
-
 
   res.render('radio.liquid', {
     showsforStation: showsforStationJSON.data,
@@ -252,7 +250,7 @@ app.get('/bookmarks', async function (req, res) {
   });
   nestedShows.sort((a, b) => new Date(a.from) - new Date(b.from));
   let bookmarkIds = [];
-  const bookmarks = await fetch('https://fdnd-agency.directus.app/items/mh_messages?filter={"from":"1G"}')
+  const bookmarks = await fetch('https://fdnd-agency.directus.app/items/mh_messages?filter={"from":"1G"}&limit=-1')
   const bookmarksResponseJSON = await bookmarks.json();
   bookmarksResponseJSON.data.forEach(oneBookmark => {
     bookmarkIds.push(oneBookmark.for);
