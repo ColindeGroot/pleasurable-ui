@@ -53,6 +53,16 @@ Met deze versie van de website kan je per radiostation per dag de shows bekijken
 
 ## Kenmerken
 
+### Color contrast test
+
+We hebben de website getest op kleurcontrast en kwamen tot de conclusie dat het contrast niet voldoende is. Hierdoor is voor sommige gebruikers de website moeilijk leesbaar, met namen knoppen of en teksten met een kleurrijke achtergrond. 
+
+Hoewel we de huisstijl van de radiostations graag wilden behouden, hebben we gekozen om de gebruikerservaring voorrang te geven. We hebben daarom kleuren geselecteerd die uitstekend scoren op contrast tests en visueel het meest op de oorspronkelijke kleuren lijken. 
+
+- img (originele kleuren)
+
+- img (aangepaste kleuren)
+
 ### Dylan
 **Client side scripting**
 
