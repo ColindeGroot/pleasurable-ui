@@ -29,6 +29,21 @@ Hieronder is mijn bookmarkanimatie te zien:
 
 https://github.com/user-attachments/assets/f66c6986-fcfd-4dc0-b157-b2ae46a27dc9
 
+### Bookmarks pagina 
+
+De gebruiker heeft de mogelijkheid om een show te bookmarken via de radioprogramma’s. De gebookmarkte shows worden opgeslagen op de pagina ‘bookmarks’. Op deze pagina krijgt de gebruiker een overzicht van alle opgeslagen shows van verschillende radioprogramma’s. 
+
+- img (bookmarks knop bij show)
+
+- img (bookmarks pagina)
+
+Om onderscheid te maken tussen de radiostations, zijn de shows in verschillende kleuren op basis van het toe behoorde station. 
+
+- Blauw voor ‘Veronica’
+- Roze voor ‘Slam!’
+- Groen voor ‘100%NL’
+
+- img (verschillende kleuren per show)
 
 
 ## Gebruik
