@@ -17,9 +17,9 @@ De instructie vind je in: [INSTRUCTIONS.md](https://github.com/fdnd-task/pleasur
 
 ## Beschrijving
 
-### Dylan
+### Hoofdpagina
 
-Ik was verantwoordelijk voor de ontwerpen en bouwen van de hoofdpagina, en heb mijzelf bezig gehouden met de data verwerken van de bookmarks naar de popup en de bookmarkspagina. Ook heb ik mijn eigen versie gemaakt van de show cards, en heb ik een animatie gemaakt voor de popup.
+De gebruiker kan op de hoofdpagina de radiostations zien, naar de socials gaan, doorklikken naar de programmeringspagina van een radiostation en naar de bookmarks
 
 Hieronder is de hoofdpagina te zien:
 
@@ -63,11 +63,10 @@ Hoewel we de huisstijl van de radiostations graag wilden behouden, hebben we gek
 
 - img (aangepaste kleuren)
 
-### Dylan
-**Client side scripting**
+### **Client side scripting**
 
 
-Ik heb op de radiopagina een client side script geschreven wat, als DOMparser en Fetch worden ondersteund, er op de achtergrond een fetch wordt gedaan en een bookmark post uitvoerd zonder dat er reload wordt. Hier wordt ook een loading en succes state toegevoegd met classnames. Deze classnames triggeren de animaties.
+Op de radiopagina is een client side script geschreven wat, als DOMparser en Fetch worden ondersteund, er op de achtergrond een fetch wordt gedaan en een bookmark post uitvoerd zonder dat er reload wordt. Hier wordt ook een loading en succes state toegevoegd met classnames. Deze classnames triggeren de animaties.
 
 Hieronder is de client side script te zien:
 https://github.com/ColindeGroot/pleasurable-ui/blob/c4dad0f484d953b93168dbfae5216541c2b3b177/views/radio.liquid#L210-L262
