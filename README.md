@@ -25,15 +25,11 @@ Hieronder is de hoofdpagina te zien:
 
 ![Screenshot (399)](https://github.com/user-attachments/assets/1da286f4-c562-4fce-b173-d97a50ba0735)
 
-Hieronder is mijn bookmarkanimatie te zien:
-
-https://github.com/user-attachments/assets/f66c6986-fcfd-4dc0-b157-b2ae46a27dc9
-
 ### Bookmarks pagina 
 
 De gebruiker heeft de mogelijkheid om een show te bookmarken via de radioprogramma’s. De gebookmarkte shows worden opgeslagen op de pagina ‘bookmarks’. Op deze pagina krijgt de gebruiker een overzicht van alle opgeslagen shows van verschillende radioprogramma’s. 
 
-- img (bookmarks knop bij show)
+https://github.com/user-attachments/assets/f66c6986-fcfd-4dc0-b157-b2ae46a27dc9
 
 - img (bookmarks pagina)
 
