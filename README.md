@@ -41,6 +41,13 @@ Om onderscheid te maken tussen de radiostations, zijn de shows in verschillende 
 
 - img (verschillende kleuren per show)
 
+###Popup
+De gebruiker krijgt op de radiopagina een popup te zien die de eerst volgende geboomartke show weergeeft afhankelijk van het radiostation. Deze popup laat zien om welke tijd de eerst volgende show zich afspeelt. Als er geen gebookmartke shows zijn komt de popup niet tevoorschijn.
+
+![Schermafbeelding 2025-05-23 112154](https://github.com/user-attachments/assets/ce1e4805-54e7-4de7-878d-be88f2df54ae)
+
+Om de popup te voorzien van een pleasureble UI is er gebruik gemaakt van animaties voor extra user feedback en interactie.
+
 
 ## Gebruik
 
