@@ -51,8 +51,10 @@ app.get('/radio/:name/programmering{/:dayname}', async function (req, res) {
   const thisWeekshows = [];
   let daysResponse;
   let dayID;
+  let todayDayNum;
+  console.log(new Date().getDay());
   if (req.params.dayname == undefined) {
-      let todayDayNum = new Date().getDay();
+      todayDayNum = new Date().getDay();
       if(todayDayNum > 5){
         todayDayNum = 1;
       }
@@ -61,11 +63,13 @@ app.get('/radio/:name/programmering{/:dayname}', async function (req, res) {
       }
     daysResponse = await fetch('https://fdnd-agency.directus.app/items/mh_day?fields=*,shows.mh_shows_id.show&filter={"sort":"' + todayDayNum + '"}');
   }
+  
   else {
     dayID = dayNames.findIndex(day => day === req.params.dayname);
     console.log(dayID);
     daysResponse = await fetch('https://fdnd-agency.directus.app/items/mh_day?fields=*,shows.mh_shows_id.show&filter={"sort":"' + dayID + '"}');
   }
+  console.log(todayDayNum);
   const daysResponseJSON = await daysResponse.json();
   daysResponseJSON.data.forEach(day => {
     const genDate = new Date(day.date);
