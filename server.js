@@ -56,6 +56,9 @@ app.get('/radio/:name/programmering{/:dayname}', async function (req, res) {
       if(todayDayNum > 5){
         todayDayNum = 1;
       }
+      if(todayDayNum == 0){
+        todayDayNum = 1;
+      }
     daysResponse = await fetch('https://fdnd-agency.directus.app/items/mh_day?fields=*,shows.mh_shows_id.show&filter={"sort":"' + todayDayNum + '"}');
   }
   else {
